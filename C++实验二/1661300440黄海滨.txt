@@ -1,0 +1,82 @@
+#include<iostream>
+#include<conio.h>
+#include <iomanip>
+#include <string>
+using namespace std;
+//------------------------------栈的顺序存储结构---------------------------------------------
+typedef char  ElemType;     // 数据元素的类型
+const int MAXSIZE=100;     // 数组的容量
+class SeqMatchin
+  { private:
+      ElemType  elem[MAXSIZE];
+    public:
+	  int top;
+      void  SeqMatchin::push(  ElemType e);
+      void SeqMatchin::pop();
+	  void SeqMatchin::strMatchin(string str);
+	  bool SeqMatchin::Is_Kuoh(char c);//是否括号
+	  bool SeqMatchin::IsLeft(char c);//是否左括号
+	  bool SeqMatchin::IsMatchin(char c);//括号是否匹配
+	  SeqMatchin(void):top(0){ }
+};
+
+void  SeqMatchin::push(  ElemType e)
+{ 
+	if(top>=MAXSIZE){cout<<"栈满"<<endl;return;}
+	elem[top++]=e;
+}
+void SeqMatchin::pop()
+ {
+	
+	if(top<=0){cout<<"空栈"<<endl;}
+	top--;
+}
+
+void SeqMatchin::strMatchin(string str)
+{
+	char temp[100];
+	strcpy(temp,str.c_str());
+	for(int i=0;i<str.size();i++)
+	{
+		if(!Is_Kuoh(temp[i])){continue;}
+		if(IsLeft(temp[i])) {push(temp[i]);continue;}
+		if(IsMatchin(temp[i])){ pop();continue;}
+		if(!IsLeft(temp[i]) && top==0){top++; break;}
+	}
+}
+
+bool SeqMatchin::Is_Kuoh(char c)
+{
+	if(c=='(' || c==')' || c=='[' || c==']' || c=='{' ||c=='}')return true;
+	return false;
+}
+
+bool SeqMatchin::IsLeft(char c)
+{
+	if(c=='(' || c=='[' || c=='{')return true;
+	return false;
+}
+
+bool SeqMatchin::IsMatchin(char c)
+{
+	if(c==')' && elem[top-1]=='(')
+		return true;
+
+	if(c==']' && elem[top-1]=='[')
+		return true;
+
+	if(c=='}' && elem[top-1]=='{')
+		return true;
+	return false;
+}
+int main()
+{
+	SeqMatchin as;
+	string str;
+	cin>>str;
+	as.strMatchin(str);
+	if(as.top==0) cout<<"yes";
+	else cout<<"no";
+	system("pause");
+	return 0;
+}
