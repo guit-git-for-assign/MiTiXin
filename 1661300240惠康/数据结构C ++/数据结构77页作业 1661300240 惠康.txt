@@ -1,0 +1,79 @@
+
+#include <iostream>
+using namespace std;
+#define MAXSIZE 50
+typedef int ElemType;
+typedef struct
+{ ElemType  *elem; 
+int length; 
+} 
+SqList;
+ 
+bool CreateList(SqList &L)
+{ int i;
+  L.elem=new ElemType[MAXSIZE]; 
+  if (!L.elem)  return false;   
+  cout<<"请输入线性表的长度,不能大于"<<MAXSIZE<<':'; 
+  cin>>L.length;
+  cout<<"请输入表中元素：";
+  for(i=0;i<L.length;i++)
+     cin>>L.elem[i];   
+}
+ 
+bool ListInsert(SqList &L,int i,ElemType e)
+{ if(i<1||i>L.length+1) 
+    { cout<<"插入序号错! " ; return  false; }        
+  if(L.length==MAXSIZE) 
+    { cout<<"表已满! " ;return  false; }   
+  for(int j=L.length-1;j>=i-1;j--)
+      L.elem[j+1]=L.elem[j];
+  L.elem[i-1]=e; 
+  L.length++;
+  return true;
+} 
+bool ListDelete(SqList &L,int i)
+{
+	if((i<1)||(i>L.length))
+	{ cout<<"删除序号错! " ; return  false; }
+	for(int j=i;j<=L.length-1;j++)
+	L.elem[j-1]=L.elem[j];
+	--L.length;
+	return true;
+  }   
+void print(SqList L)
+{ int i;
+  for(i=0;i<L.length;i++)
+     if (i==0)  cout<<'('<<L.elem[i];  
+     else cout<<','<<L.elem[i];
+  cout<<')'<<endl;
+}
+int main()
+{ 
+	SqList L;
+ 	int i,x; 
+	ElemType e;
+  cout<<"创建[1]"<<endl;
+  cout<<"输出[2]"<<endl;
+  cout<<"插入[3]"<<endl;
+  cout<<"删除[4]"<<endl;
+  cout<<"退出[0]"<<endl;
+  cout<<"请输入你的选择：";
+  cin>>x;
+  while(x)
+    {  switch(x)
+       { case 1:CreateList(L); break;
+         case 2:print(L);break;
+         case 3:cout<<"请输入插入位置和待插入元素:";   cin>>i>>e;
+                ListInsert(L,i,e) ; 
+                break;
+         case 4:cout<<"请输入删除位置:"; cin>>i;
+                ListDelete(L,i);
+				break; 
+         case 0:break;
+         default:cout<<"你的选择有错，请重新选择!" ; 
+	   }
+	   cout<<"请输入你的选择："; cin>>x;
+    }	  
+  return 0;  
+
+}
