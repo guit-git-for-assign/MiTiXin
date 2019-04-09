@@ -1,0 +1,29 @@
+import java.util.HashMap;
+import java.util.Map;
+ 
+ 
+public class TestC {
+    public static void main(String[] args){
+        //要统计字符个数的字符串
+        String str="abcdeab";
+        //每个字符和个数都存放在集合中，
+        Map<Character,Integer> map=new HashMap<Character,Integer>();
+        //遍历字符串
+        for(int x=0;x<str.length();x++){
+            //获取字符
+            char c=str.charAt(x);
+            //判断该字符是否存在集合
+            if(map.get(c)==null){
+                //不存在就存进去
+                map.put(c, 1);
+            }else{
+                //存在了就加一
+                int count= map.get(c)+1;
+                map.put(c, count);
+            }
+             
+        }
+        //输出每个字符的出现次数
+        System.out.println(map);
+    }
+}
