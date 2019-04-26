@@ -1,0 +1,51 @@
+队列
+void SeQueue::AddQ(ElemType x)
+{  //将此成员函数补充完整，使得程序能够正确运行
+	if((rear+1)%MAXSIZE==front)
+	{
+		cout<<"QUEUE IS FULL!"<<endl;
+	}
+	else{
+		rear=(rear+1)%MAXSIZE;
+		elem[rear]=x;
+	}
+ }
+ ElemType SeQueue::DelQ()
+ {
+ //将此成员函数补充完整，使得程序能够正确运行
+if(front==rear)
+{
+cout<<"kong"<<endl;
+return -1;
+}
+else{
+	
+	front=(front+1)%MAXSIZE;
+	return elem[front];
+}
+
+ }
+栈
+void  SqStack::push(  ElemType e)
+{ 
+//将此成员函数补充完整，使得程序能够正确运行
+	if(top==MAXSIZE-1)
+	{
+		cout<<"man"<<endl;
+	}
+	else{
+		elem[++top]=e;
+		
+	}
+}
+ElemType SqStack::pop()
+ {
+//将此成员函数补充完整，使得程序能够正确运行
+	if(IsEmpty())
+		return -1;
+	else{
+		int e;
+		e=elem[top--];
+		return e;
+	}
+}
