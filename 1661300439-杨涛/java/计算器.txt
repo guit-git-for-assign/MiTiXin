@@ -1,0 +1,98 @@
+package com.wjy;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.KeyStroke;
+
+public class Menu extends JFrame 
+{
+	JMenuBar menubar;
+	
+	JMenu menu,menu2,subMenu;
+	
+	JMenuItem  itemLiterature,itemCooking,item3,item4;
+	
+	JTextArea textArea;
+	
+	JPanel jPanel;
+	
+	
+	
+	public Menu()
+	{
+		menubar=new JMenuBar(); 
+		menu=new JMenu("文件"); 
+		menu2 = new JMenu("编辑");
+		textArea = new JTextArea();
+		
+		
+		itemLiterature=new JMenuItem("新建");
+	    itemCooking=new JMenuItem("打开");
+		item3 = new JMenuItem("撤销");
+		item4 = new JMenuItem("剪切");
+	    
+		itemLiterature.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,InputEvent.CTRL_MASK));
+		itemCooking.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,InputEvent.CTRL_MASK));
+		item3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z,InputEvent.CTRL_MASK));
+		item4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,InputEvent.CTRL_MASK));
+		
+	    menu.add(itemLiterature);
+	    menu.add(itemCooking);
+	    menu2.add(item3);
+	    menu2.add(item4);
+	    
+		
+		menubar.add(menu);
+		menubar.add(menu2);
+		
+		setJMenuBar(menubar);
+		
+		add(textArea,BorderLayout.NORTH);
+		
+		jPanel = new JPanel();
+		
+		add(jPanel);
+		
+		GridLayout grid = new GridLayout(4,4);
+		
+		jPanel.setLayout(grid);;
+		
+		jPanel.add(new JButton("1"));
+		jPanel.add(new JButton("2"));
+		jPanel.add(new JButton("3"));
+		jPanel.add(new JButton("+"));
+		
+		jPanel.add(new JButton("4"));
+		jPanel.add(new JButton("5"));
+		jPanel.add(new JButton("6"));
+		jPanel.add(new JButton("-"));
+		
+		jPanel.add(new JButton("7"));
+		jPanel.add(new JButton("8"));
+		jPanel.add(new JButton("9"));
+		jPanel.add(new JButton("*"));
+		
+		jPanel.add(new JButton("/"));
+		jPanel.add(new JButton("0"));
+		jPanel.add(new JButton("-"));
+		jPanel.add(new JButton("="));
+		
+		
+		setSize(500,600);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		setVisible(true);
+		
+	}
+}
