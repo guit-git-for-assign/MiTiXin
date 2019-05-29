@@ -1,0 +1,60 @@
+	
+package cal;
+
+public class SellTicktDemo implements  Runnable {
+ 
+    private int total = 10;
+     
+   
+    private int no = total+1;
+     
+
+    private Object obj = new Object();
+     
+    
+    public void run() {
+         
+        while(true){
+          
+            synchronized(this.obj){
+                if(this.total > 0){
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    String msg = Thread.currentThread().getName()+" 售出第   "+(this.no -this.total) +"  张票";
+                    System.out.println(msg);
+                    this.total--;
+                }else{
+                    System.out.println("票已售完，请下次再来！");
+                    System.exit(0);
+                }
+            }
+        }
+         
+    }
+}
+package cal;
+public class SellTicktDemoTest {
+    
+    public static void main(String[] args) {
+         
+        
+        SellTicktDemo std = new SellTicktDemo();
+         
+        
+        Thread t1 = new Thread(std,"售票1");
+        Thread t2 = new Thread(std,"售票2");
+        Thread t3 = new Thread(std,"售票3");
+        Thread t4 = new Thread(std,"售票4");
+         
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+         
+    }
+    }
+ 
+	
